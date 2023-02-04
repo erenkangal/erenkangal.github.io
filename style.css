@@ -1,0 +1,314 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+}
+.top {
+  --offset: 50px;
+  display: grid;
+  grid-template-columns: auto 0px;
+  position: sticky;
+  bottom: 30px;
+  place-self: end;
+  margin-top: calc(100vh + var(--offset));
+  margin-left: 94%;
+  /* visual styling */
+  width: 45px;
+  aspect-ratio: 1;
+  background: #ff8b24;
+  border-radius: 10px;
+}
+
+.top:before {
+  content: "";
+  position: absolute;
+  inset: 30%;
+  transform: translateY(20%) rotate(-45deg);
+  border-top: 5px solid #fff;
+  border-right: 5px solid #fff;
+}
+
+/* -------------Welcome Page------------ */
+
+.firstPage {
+  width: 100%;
+  height: 100vh;
+  background-color: #f5f5e6;
+}
+
+.headings {
+  width: 80%;
+  margin-right: 15%;
+  margin-left: 13%;
+  padding: 55px 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  width: 300px;
+  cursor: pointer;
+  margin-top: 29px;
+}
+
+.flag {
+  width: 23px;
+}
+.headings ul li {
+  text-align: right;
+  list-style: none;
+  display: inline-block;
+  padding: 30px 30;
+  margin: 0 20px;
+  position: relative;
+}
+
+.headings ul li a {
+  font-family: "Roboto", sans-serif;
+  font-size: 30px;
+  font-weight: 550;
+  text-decoration: none;
+  color: #000;
+  text-transform: capitalize;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.headings ul li::after {
+  content: "";
+  height: 2px;
+  width: 0;
+  background: #151616;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  transition: 0.6s;
+}
+
+.headings ul li:hover::after {
+  width: 100%;
+}
+
+.interior {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: black;
+}
+.interior h1 {
+  font-size: 60px;
+  font-weight: 600;
+  margin-top: 80px;
+}
+.interior p {
+  font-size: 30px;
+  margin: 20px auto;
+  margin-bottom: 20px;
+  font-weight: 400;
+  line-height: 25px;
+  text-transform: capitalize;
+}
+
+.interior span {
+  font-size: 20px;
+}
+
+/* -------Set page for other screens------------- */
+
+@media (max-width: 781px) {
+  .headings ul li a {
+    font-size: 15px;
+  }
+}
+
+/* -------About Me Page------------- */
+
+.aboutMe {
+  width: 80%;
+  height: 100vh;
+  margin: auto;
+  padding-top: 150px;
+  text-align: center;
+}
+.aboutMe::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35px;
+  background: linear-gradient(to top, white, transparent);
+  z-index: 1000;
+}
+
+.aboutMe h2 {
+  margin-bottom: 150px;
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.infos {
+  display: flex;
+  align-items: center;
+  margin-bottom: 150px;
+}
+
+.infos p {
+  padding: 2%;
+  font-size: 23px;
+  font-weight: 450;
+  line-height: 30px;
+  width: 30%;
+  text-align: justify;
+  background: #e7e6e0b7;
+  border-radius: 30px;
+  box-shadow: 7px 7px 7px 7px #151616;
+}
+
+.infos span {
+  font-weight: 600;
+}
+
+.picture {
+  margin-left: 173px;
+  margin-right: 173px;
+  width: 200px;
+  border-radius: 60px;
+}
+
+/* -------Skills Page------------- */
+
+.skills {
+  width: 80%;
+  height: 100vh;
+  margin: auto;
+  margin-top: 150px;
+  text-align: center;
+  background-image: url();
+  background-repeat: no-repeat;
+}
+
+.skills h3 {
+  margin-bottom: 150px;
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.skillTitles {
+  margin: 20px auto;
+  width: 70%;
+  height: 60%;
+  display: grid;
+  grid-template-columns: 350px 350px;
+  grid-row: 200px 200px;
+  grid-column-gap: 40%;
+  grid-row-gap: 40%;
+}
+
+.skillTitles h2 {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.skillTitles p {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 40px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.skillTitles span {
+  float: right;
+}
+
+.ability {
+  padding: 7%;
+
+  background: #e7e6e0b7;
+  border-radius: 30px;
+  box-shadow: 7px 7px 7px 7px #151616;
+}
+
+/* -------Contact Page------------- */
+
+.contact {
+  width: 60%;
+  height: 100vh;
+  margin: auto;
+  margin-top: 150px;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.contact .logolar {
+  display: inline-block;
+  justify-content: space-between;
+}
+
+.contact .logolar .linkedin {
+  width: 55px;
+  cursor: pointer;
+  margin: 0 40px;
+}
+
+.contact .logolar .insta {
+  width: 55px;
+  cursor: pointer;
+  margin: 0 40px;
+}
+.contact .logolar .twitter {
+  width: 55px;
+  cursor: pointer;
+  margin: 0 40px;
+}
+
+.contact h1 {
+  margin-bottom: 150px;
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.contact h2 {
+  margin: 50px 0;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.contactForm {
+  margin-top: 100px;
+  background: #e7e6e0b9;
+  width: 60%;
+}
+
+.contactForm .inputs {
+  width: 90%;
+}
+
+.contactForm .inputs input {
+  width: 35%;
+  padding: 5px 5px;
+  font-size: 15px;
+  margin: 10px 0;
+  margin-left: 10%;
+  border: none;
+  border-bottom: 2px solid #000;
+  outline: none;
+}
+
+.contactForm .inputs textarea {
+  width: 83%;
+  padding: 5px 5px;
+  font-size: 15px;
+  margin-left: 10%;
+}
