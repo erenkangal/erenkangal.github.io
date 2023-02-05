@@ -118,13 +118,6 @@
   font-size: 20px;
 }
 
-/* -------Set page for other screens------------- */
-
-@media (max-width: 781px) {
-  .headings ul li a {
-    font-size: 15px;
-  }
-}
 
 /* -------About Me Page------------- */
 
@@ -311,4 +304,160 @@
   padding: 5px 5px;
   font-size: 15px;
   margin-left: 10%;
+}
+
+@media (max-width: 768px) {
+  .top {
+    width: 33px;
+    margin-left: 90%;
+    margin-bottom: 30%;
+  }
+  /* -------First Page------------- */
+
+ 
+  .headings ul li a {
+    display: none;
+  }
+  .logo {
+    width: 250px;
+    display: block;
+    margin-top: 40px;
+    margin-left: 11%;
+  }
+  .interior h1 {
+    font-size: 25px;
+  }
+  .interior p {
+    font-size: 16px;
+  }
+  .interior span {
+    font-size: 15px;
+  }
+  .interior .flag {
+    width: 17px;
+  }
+  /* -------AboutMe Page------------- */
+  .aboutMe {
+    height: 100%;
+  }
+  .aboutMe h2 {
+    font-size: 40px;
+  }
+  .infos {
+    flex-direction: column;
+  }
+  .infos p {
+    width: 250px;
+    font-size: 21px;
+    border-radius: 10px;
+    box-shadow: none;
+    margin-bottom: 100px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .infos span {
+    display: block;
+    text-decoration: underline;
+  }
+
+  .picture {
+    width: 200px;
+    margin-bottom: 100px;
+    border-radius: 160px;
+  }
+  /* -------Skills Page------------- */
+
+  .skills {
+    height: 100%;
+    overflow: auto;
+  }
+  .skills h3 {
+    font-size: 40px;
+    margin-bottom: 150px;
+  }
+  .skillTitles {
+    display: block;
+    flex-direction: column;
+  }
+  .skillTitles h2 {
+    font-size: 21px;
+  }
+  .skillTitles p {
+    font-size: 17px;
+  }
+  .ability {
+    padding: 11%;
+    margin-bottom: 35px;
+  }
+
+  /* -------Contact Page------------- */
+
+  .contact {
+    width: 100%;
+    height: 80%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .contact h1 {
+    font-size: 40px;
+  }
+
+  .contact .logolar {
+    display: inline-block;
+  }
+  
+  .contact .logolar .linkedin {
+    width: 35px;
+    cursor: pointer;
+    margin: 0 20px;
+  }
+  
+  .contact .logolar .insta {
+    width: 35px;
+    cursor: pointer;
+    margin: 0 20px;
+  }
+  .contact .logolar .twitter {
+    width: 35px;
+    cursor: pointer;
+    margin: 0 20px;
+  }
+  
+ 
+  .contact h2 {
+    margin: 50px 0;
+    font-size: 25px;
+    font-weight: 500;
+  }
+  
+  .contactForm {
+    margin-top: 100px;
+    background: #e7e6e0b9;
+    width: 70%;
+  }
+  
+  .contactForm .inputs {
+    width: 90%;
+  }
+  
+  .contactForm .inputs input {
+    width: 83%;
+    padding: 5px 5px;
+    font-size: 15px;
+    margin: 10px 0;
+    margin-left: 10%;
+    border: none;
+    border-bottom: 2px solid #000;
+    outline: none;
+  }
+  
+  .contactForm .inputs textarea {
+    width: 83%;
+    padding: 5px 5px;
+    font-size: 15px;
+    margin-left: 10%;
+  }
+  
 }
