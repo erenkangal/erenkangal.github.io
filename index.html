@@ -15,7 +15,7 @@
 
     <div :class="['theme-switch', { active: isDarkMode }]" @click="toggleDarkMode">
       <div :class="['emoji', { right: isDarkMode }]">
-        {{ isDarkMode ? "☀️" : "🌙" }}
+        {{ isDarkMode ? "🌙" : "☀️" }}
       </div>
       <div :class="['switch-thumb', { active: isDarkMode }]"></div>
     </div>
@@ -39,7 +39,7 @@
 
   <section class="aboutMe" id="aboutMe">
     <h2>About Me</h2>
-    <div class="infos">
+    <div class="infos animate-on-scroll">
       <p>{{ aboutMe.intro }}</p>
       <img src="images/ImageOfMe.jpg" class="picture" alt="profile" />
       <p>
@@ -52,7 +52,7 @@
 
   <section class="skills" id="skills">
     <h3>Skills</h3>
-    <div class="skillTitles">
+    <div class="skillTitles animate-on-scroll">
       <div class="ability" v-for="category in skills" :key="category.title">
         <h2>{{ category.title }}</h2>
         <p v-for="item in category.items" :key="item.name">
@@ -79,12 +79,17 @@
 
     <div class="contactForm">
       <h2>Mail Me</h2>
-      <form @submit.prevent="submitForm">
-        <input type="text" v-model="form.name" placeholder="Name" required />
-        <input type="email" v-model="form.email" placeholder="E-Mail" required />
-        <textarea v-model="form.message" rows="5" placeholder="Your Message..." required></textarea>
-        <input type="submit" value="Submit" />
+      <form
+              action="https://formspree.io/f/mldbrrwb"
+              method="POST"
+              class="contact-form"
+      >
+        <input type="text" name="name" placeholder="Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+        <button type="submit">Send</button>
       </form>
+
     </div>
   </section>
 

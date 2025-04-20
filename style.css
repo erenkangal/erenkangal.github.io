@@ -22,6 +22,17 @@ section:not(:first-of-type)::before {
     background-color: #ddd;
 }
 
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 body {
     background-color: #f5f5f5;
@@ -150,8 +161,10 @@ a:hover {
 
 .skillTitles {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+    padding-left: 355px;
+    grid-template-columns: 350px 350px;
+    grid-auto-rows: auto;
+    grid-gap: 100px;
 }
 
 .ability {
@@ -222,7 +235,7 @@ a:hover {
     outline: none;
 }
 
-.contactForm input[type="submit"] {
+.contactForm button[type="submit"] {
     width: 200px;
     padding: 10px;
     background-color: #ff8b24;
@@ -234,7 +247,7 @@ a:hover {
     transition: background-color 0.3s ease;
 }
 
-.contactForm input[type="submit"]:hover {
+.contactForm button[type="submit"]:hover {
     background-color: #e5781f;
 }
 
