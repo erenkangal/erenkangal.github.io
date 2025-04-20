@@ -1,160 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="images/logo.png" />
-    <title>Eren Kangal Portfolio</title>
-    <script src="https://unpkg.com/vue@next" defer></script>
-    <script src="app.js" defer></script>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eren Kangal Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/vue@3" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<div id="app">
+  <header class="navbar">
+    <img src="images/webLogo.gif" class="logo" alt="logo" />
 
-    <section class="firstPage">
-      <div class="background">
-        <div class="headings">
-          <img src="images/webLogo.gif" class="logo" />
-          <ul>
-            <li><a href="index.html">home</a></li>
-            <li><a href="#aboutMe">about me</a></li>
-            <li><a href="#skills">skills</a></li>
-            <li><a href="#contact">contact</a></li>
-          </ul>
-        </div>
-        <div class="interior">
-          <h1>Hi, I'm Eren <br /></h1>
-          <p>Your friendly Neighborhood Programmer</p>
-          <br /><span>based in </span> <img src="images/turkeyFlag.png" class="flag" />
-        </div>
+    <div :class="['theme-switch', { active: isDarkMode }]" @click="toggleDarkMode">
+      <div :class="['emoji', { right: isDarkMode }]">
+        {{ isDarkMode ? "☀️" : "🌙" }}
       </div>
-    </section>
+      <div :class="['switch-thumb', { active: isDarkMode }]"></div>
+    </div>
 
-    <section class="aboutMe">
-      <a name="aboutMe"></a>
-      <h2>About me</h2>
-      <div class="infos">
-        <p>
-          Hi, I'm Eren. I'm 20. Currently studying Computer Engineering in TED
-          University. This is my 3rd grade at the moment. I've learned JAVA,
-          MySQL, C and Assembly at school. With my internship at Lenora Bilisim,
-          I've met with Front-End Developing. I started to working with HTML,
-          CSS and JavaScript. I also started to learn Vue framework.
+      <ul>
+        <li v-for="item in navItems" :key="item.text">
+          <a :href="item.href">{{ item.text }}</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="firstPage" id="home">
+    <div class="interior">
+      <h1>Hi, I'm Eren</h1>
+      <p>Your friendly Neighborhood Programmer</p>
+      <span>based in</span>
+      <img src="images/turkeyFlag.png" class="flag" />
+    </div>
+  </section>
+
+  <section class="aboutMe" id="aboutMe">
+    <h2>About Me</h2>
+    <div class="infos">
+      <p>{{ aboutMe.intro }}</p>
+      <img src="images/ImageOfMe.jpg" class="picture" alt="profile" />
+      <p>
+        <span>My vision:</span> {{ aboutMe.vision }}
+        <br /><br />
+        <span>My mission:</span> {{ aboutMe.mission }}
+      </p>
+    </div>
+  </section>
+
+  <section class="skills" id="skills">
+    <h3>Skills</h3>
+    <div class="skillTitles">
+      <div class="ability" v-for="category in skills" :key="category.title">
+        <h2>{{ category.title }}</h2>
+        <p v-for="item in category.items" :key="item.name">
+          {{ item.name }} : <span>{{ item.level }}</span>
         </p>
-        <img src="images/ImageOfMe.jpg" class="picture" />
-        <p>
-          <span>My vision:</span> Develop myself as much as I can and help my
-          country to take highest rank among the most develop countries in the world.
-
-          <br /><br /><span>My mission:</span> Everyone needs a good programmer.
-          I am educating myself to become a good Front-End developer and be
-          helpful for everyone.
-        </p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="skills">
-      <a name="skills"></a>
-      <h3>Skills</h3>
-      <div class="skillTitles">
-        <div class="ability">
-          <h2>Front-End</h2>
-          <p>
-            HTML :<span>Intermediate</span><br />CSS :<span>Intermediate</span
-            ><br />JavaScript :<span>Beginner</span> <br />Vue JS :
-            <span>Beginner</span>
-          </p>
-        </div>
+  <section class="contact" id="contact">
+    <h1>Contact</h1>
 
-        <div class="ability">
-          <h2>Back-End</h2>
-          <p>
-            Java :<span>Intermediate</span><br />C : <span>Beginner</span
-            ><br />MySQL :<span>Beginner</span><br />Assembly :
-            <span>Beginner</span>
-          </p>
-        </div>
+    <div class="logolar">
+      <a :href="social.linkedin" target="_blank">
+        <img src="images/linkedin.png" class="icon" alt="linkedin" />
+      </a>
+      <a :href="social.instagram" target="_blank">
+        <img src="images/instagramLogo.png" class="icon" alt="instagram" />
+      </a>
+      <a :href="social.twitter" target="_blank">
+        <img src="images/twitterLogo.png" class="icon" alt="twitter" />
+      </a>
+    </div>
 
-        <div class="ability">
-          <h2>General Tools</h2>
-          <p>
-            MS Office:<span>Advanced</span><br />Adobe PS:<span>Beginner</span>
-          </p>
-        </div>
+    <div class="contactForm">
+      <h2>Mail Me</h2>
+      <form @submit.prevent="submitForm">
+        <input type="text" v-model="form.name" placeholder="Name" required />
+        <input type="email" v-model="form.email" placeholder="E-Mail" required />
+        <textarea v-model="form.message" rows="5" placeholder="Your Message..." required></textarea>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </section>
 
-        <div class="ability">
-          <h2>Languages</h2>
-          <p>
-            Turkish:<span>Native</span><br />English:<span>C1</span
-            ><br />Italian:<span>A1</span>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact">
-      <a name="contact"></a>
-      <h1>Contact</h1>
-      <div class="logolar">
-        <section id="user-goal">
-          <a v-bind:href="linkedinLink">
-            <img src="images/linkedin.png" class="linkedin" />
-          </a>
-          <a v-bind:href="instaLink">
-            <img src="images/instagramLogo.png" class="insta" />
-          </a>
-          <a v-bind:href="twitterLink">
-            <img src="images/twitterLogo.png" class="twitter" />
-          </a>
-        </section>
-      </div>
-      <div class="contactForm">
-        <h2>Mail Me</h2>
-        <div class="inputs">
-          <form onsubmit="sendEmail(); reset(); return false;">
-            <input type="text" id="name" placeholder="Name" required />
-
-            <input type="email" id="email" placeholder="E-Mail" required />
-
-            <br /><textarea
-              name="comment"
-              id="comment"
-              rows="5"
-              placeholder="Your Message..."
-              required
-            ></textarea>
-
-            <input name="_formsubmit_id" type="text" style="display: none" />
-
-            <input value="Submit" type="submit" />
-          </form>
-        </div>
-      </div>
-    </section>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-
-    <script>
-      function sendEmail() {
-        Email.send({
-          SecureToken: "C973D7AD-F097-4B95-91F4-40ABC5567812",
-
-          Host: "gerenkangal@github.io",
-          Username: "gerenkangal@gmail.com",
-          Password: "",
-          To: "gerenkangal@gmail.com",
-          From: document.getElementById("email").value,
-          Subject: "Yeni bir mesajınız var",
-          Body:
-            "Name: " +
-            document.getElementById("name").value +
-            "<br> Email: " +
-            document.getElementById("email").value +
-            "<br> Message: " +
-            document.getElementById("comment").value,
-        }).then((message) => alert("Message sent succesfully"));
-      }
-    </script>
-  <a href="#" class="top"></a>
+</div>
 </body>
 </html>
