@@ -251,7 +251,6 @@ a:hover {
     background: transparent;
     outline: none;
     resize: none;
-
 }
 
 .contactForm button[type="submit"] {
@@ -588,7 +587,7 @@ body.dark-mode .infos p {
 
     .contactForm input,
     .contactForm textarea {
-        width: 100%;
+        width: 85%;
         padding: 10px;
         font-size: 14px;
         background: transparent;
