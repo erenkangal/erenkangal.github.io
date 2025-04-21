@@ -212,7 +212,7 @@ a:hover {
 
 
 .contact {
-    width: 40%;
+    width: 100%;
     margin: 100px auto;
     text-align: center;
 }
@@ -223,12 +223,15 @@ a:hover {
 }
 
 .contactForm {
-    margin-top: 40px;
+    width: 40%;
+    margin: 40px auto 0 auto; /* Ortalamak için auto */
     background: #e7e6e0b7;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
 }
+
 
 .contactForm form {
     display: flex;
@@ -247,6 +250,8 @@ a:hover {
     border-bottom: 2px solid #000;
     background: transparent;
     outline: none;
+    resize: none;
+
 }
 
 .contactForm button[type="submit"] {
@@ -566,20 +571,50 @@ body.dark-mode .infos p {
     }
 
     .contactForm {
+        width: 100%;
+        max-width: 90%;
+        margin: 30px auto;
         padding: 20px;
+        border-radius: 20px;
+        background-color: #2a2a2a;
+        box-sizing: border-box;
+    }
+
+    .contactForm h2 {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
     }
 
     .contactForm input,
     .contactForm textarea {
         width: 100%;
+        padding: 10px;
         font-size: 14px;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid #444;
+        color: white;
+        box-sizing: border-box;
     }
 
     .contactForm button,
     .contactForm input[type="submit"] {
         width: 100%;
-        font-size: 15px;
         padding: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        background-color: #ff8b24;
+        color: white;
+        border-radius: 10px;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+
+    .contactForm button:hover,
+    .contactForm input[type="submit"]:hover {
+        background-color: #e5781f;
     }
 
     .logolar {
