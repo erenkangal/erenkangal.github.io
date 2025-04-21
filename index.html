@@ -19,12 +19,24 @@
       </div>
       <div :class="['switch-thumb', { active: isDarkMode }]"></div>
     </div>
+    <div class="hamburger" @click="menuOpen = !menuOpen">
+      <span :class="{ 'active': menuOpen }"></span>
+      <span :class="{ 'active': menuOpen }"></span>
+      <span :class="{ 'active': menuOpen }"></span>
+    </div>
 
+    <nav :class="{ open: menuOpen }">
       <ul>
         <li v-for="item in navItems" :key="item.text">
-          <a :href="item.href">{{ item.text }}</a>
+          <a :href="item.href" @click="menuOpen = false">{{ item.text }}</a>
         </li>
       </ul>
+      <div class="mobile-theme-switch" @click="toggleDarkMode">
+        <div :class="['emoji', { right: isDarkMode }]">
+          {{ isDarkMode ? "🌙" : "☀️" }}
+        </div>
+        <div :class="['switch-thumb', { active: isDarkMode }]"></div>
+      </div>
     </nav>
   </header>
 

@@ -1,13 +1,14 @@
 const app = Vue.createApp({
   data() {
     return {
-      // NAVIGATION
+      menuOpen: false,
       navItems: [
         { text: "Home", href: "#home" },
         { text: "About Me", href: "#aboutMe" },
         { text: "Skills", href: "#skills" },
         { text: "Contact", href: "#contact" }
       ],
+
 
       // ABOUT ME
       aboutMe: {
