@@ -385,7 +385,7 @@ body.dark-mode .infos p {
     height: 32px;
     background-color: #ccc;
     border-radius: 30px;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: space-between;
     padding: 2px;
