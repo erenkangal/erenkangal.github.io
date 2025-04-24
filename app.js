@@ -12,9 +12,9 @@ const app = Vue.createApp({
 
       // ABOUT ME
       aboutMe: {
-        intro: "Graduated from Computer Engineering, TED University in 2024. Currently working as a Software Test Engineer at Innova Bilişim.",
-        vision: "Develop myself as much as I can and help my country to reach a top rank among the most developed countries.",
-        mission: "Everyone needs a good programmer. I’m educating myself to become a good Front-End developer and be helpful to everyone."
+        intro: "Graduated from Computer Engineering, TED University in 2024. Worked in Türk Telekom as a Back-End Developer for 1 year. Currently working as a Software Test Engineer at Innova Bilişim.",
+        vision: "To become a trusted software engineer who creates scalable and impactful solutions that make technology feel effortless.",
+        mission: "To grow every day as a developer by solving real problems with clean code, curiosity, and a passion for learning."
       },
 
       // SKILLS
@@ -32,9 +32,9 @@ const app = Vue.createApp({
           title: "Back-End",
           items: [
             { name: "Java", level: "Intermediate" },
+            { name: "SQL", level: "Intermediate" },
             { name: "C", level: "Beginner" },
-            { name: "MySQL", level: "Beginner" },
-            { name: "Assembly", level: "Beginner" }
+            { name: "Python", level: "Beginner" }
           ]
         },
         {
@@ -42,7 +42,8 @@ const app = Vue.createApp({
           items: [
             { name: "Selenium", level: "Intermediate" },
             { name: "SOAP UI", level: "Intermediate" },
-            { name: "Playwright", level: "Beginner" }
+            { name: "Playwright", level: "Beginner" },
+            { name: "CodeceptJS", level: "Beginner" }
           ]
         },
         {
@@ -59,7 +60,8 @@ const app = Vue.createApp({
       social: {
         linkedin: "https://www.linkedin.com/in/eren-kangal-b00aab1b4/",
         instagram: "https://www.instagram.com/ekangal1/",
-        twitter: "https://twitter.com/ekangal0"
+        twitter: "https://twitter.com/ekangal0",
+        github: "https://github.com/erenkangal"
       },
 
       // CONTACT FORM
