@@ -275,6 +275,7 @@ a:hover {
     border-bottom: 2px solid #000;
     background: transparent;
     outline: none;
+    color: white;
     resize: none;
 }
 
@@ -297,6 +298,7 @@ a:hover {
 .logolar {
     display: flex;
     justify-content: center;
+    gap: 3%;
 }
 
 .logolar .icon {
