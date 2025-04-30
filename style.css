@@ -288,9 +288,9 @@ a:hover {
     height: 30px;
     background-color: #ccc;
     border-radius: 30px;
-    position: fixed;
-    top: 35px;
-    right: 35px;
+    position: absolute;
+    top: 35%;
+    right: 2%;
     cursor: pointer;
     transition: background-color 0.3s ease;
     z-index: 999;
@@ -327,7 +327,7 @@ a:hover {
     top: auto;
     left: 42px;
     width: 26px;
-    height: 26px;
+    height: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
