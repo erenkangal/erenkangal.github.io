@@ -39,6 +39,31 @@ section:not(:first-of-type)::before {
     transform: translateY(0);
 }
 
+.top {
+    --offset: 50px;
+    display: grid;
+    grid-template-columns: auto 0px;
+    position: fixed;
+    bottom: 30px;
+    place-self: end;
+    margin-top: calc(100vh + var(--offset));
+    margin-left: 94%;
+    /* visual styling */
+    width: 45px;
+    aspect-ratio: 1;
+    background: #ff8b24;
+    border-radius: 10px;
+}
+
+.top:before {
+    content: "";
+    position: absolute;
+    inset: 30%;
+    transform: translateY(20%) rotate(-45deg);
+    border-top: 5px solid #fff;
+    border-right: 5px solid #fff;
+}
+
 
 body {
     background-color: #f5f5f5;
@@ -212,7 +237,7 @@ a:hover {
 
 
 .contact {
-    width: 100%;
+    width: 95%;
     margin: 100px auto;
     text-align: center;
 }
@@ -272,7 +297,6 @@ a:hover {
 .logolar {
     display: flex;
     justify-content: center;
-    gap: 5%;
 }
 
 .logolar .icon {
@@ -444,6 +468,10 @@ body.dark-mode .infos p {
         padding: 0 10px;
     }
 
+    .top {
+        display: none;
+    }
+
     .navbar {
         display: flex;
         align-items: center;
@@ -571,7 +599,7 @@ body.dark-mode .infos p {
 
     .contactForm {
         width: 100%;
-        max-width: 90%;
+        max-width: 100%;
         margin: 30px auto;
         padding: 20px;
         border-radius: 20px;
@@ -587,7 +615,7 @@ body.dark-mode .infos p {
 
     .contactForm input,
     .contactForm textarea {
-        width: 85%;
+        width: 80%;
         padding: 10px;
         font-size: 14px;
         background: transparent;

@@ -12,7 +12,7 @@ const app = Vue.createApp({
 
       // ABOUT ME
       aboutMe: {
-        intro: "Graduated from Computer Engineering, TED University in 2024. Worked in Türk Telekom as a Back-End Developer for 1 year. Currently working as a Software Test Engineer at Innova Bilişim.",
+        intro: "Graduated in Computer Engineering from TED University in 2024. Completed a one-year experience as a Back-End Developer at Türk Telekom. Currently working as a Software Test Engineer at Innova Bilişim.",
         vision: "To become a trusted software engineer who creates scalable and impactful solutions that make technology feel effortless.",
         mission: "To grow every day as a developer by solving real problems with clean code, curiosity, and a passion for learning."
       },
