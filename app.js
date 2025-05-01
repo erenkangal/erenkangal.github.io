@@ -9,7 +9,6 @@ const app = Vue.createApp({
         { text: "Contact", href: "#contact" }
       ],
 
-
       // ABOUT ME
       aboutMe: {
         intro: "Graduated in Computer Engineering from TED University in 2024. Completed a one-year experience as a Back-End Developer at Türk Telekom. Currently working as a Software Test Engineer at Innova Bilişim.",
@@ -95,9 +94,6 @@ const app = Vue.createApp({
 
     handleScroll() {
       this.showButton = window.scrollY > 100;
-      b
-
-
     }
   },
 
@@ -122,7 +118,6 @@ const app = Vue.createApp({
     elements.forEach(el => observer.observe(el));
 
     window.addEventListener("scroll",this.handleScroll);
-
   },
 
   watch: {
