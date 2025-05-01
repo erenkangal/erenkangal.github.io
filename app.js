@@ -72,7 +72,10 @@ const app = Vue.createApp({
       },
 
       // THEME
-      isDarkMode: false
+      isDarkMode: false,
+
+      //go-top button
+      showButton: false
     };
   },
 
@@ -88,6 +91,13 @@ const app = Vue.createApp({
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode;
       document.body.classList.toggle("dark-mode", this.isDarkMode);
+    },
+
+    handleScroll() {
+      this.showButton = window.scrollY > 100;
+      b
+
+
     }
   },
 
@@ -110,6 +120,9 @@ const app = Vue.createApp({
 
     const elements = document.querySelectorAll(".animate-on-scroll");
     elements.forEach(el => observer.observe(el));
+
+    window.addEventListener("scroll",this.handleScroll);
+
   },
 
   watch: {
