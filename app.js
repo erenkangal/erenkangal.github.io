@@ -39,6 +39,8 @@ const app = Vue.createApp({
         {
           title: "Testing",
           items: [
+            { name: "JUnit", level: "Intermediate" },
+            { name: "TestNG", level: "Intermediate" },
             { name: "Selenium", level: "Intermediate" },
             { name: "SOAP UI", level: "Intermediate" },
             { name: "Playwright", level: "Beginner" },

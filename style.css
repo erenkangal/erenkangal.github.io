@@ -205,7 +205,7 @@ a:hover {
 
 .ability {
     width: 280px;
-    height: 240px;
+    height: 280px;
     background-color: #e7e6e0b7;
     border-radius: 50px;
     padding: 40px;
@@ -275,8 +275,8 @@ a:hover {
     border-bottom: 2px solid #000;
     background: transparent;
     outline: none;
-    color: white;
     resize: none;
+    color: black;
 }
 
 .contactForm button[type="submit"] {
@@ -392,6 +392,12 @@ body.dark-mode .contactForm,
 body.dark-mode .infos p {
     background-color: #2a2a2a;
     color: #eee;
+}
+
+body.dark-mode .contactForm input[type="text"],
+body.dark-mode .contactForm input[type="email"],
+body.dark-mode .contactForm textarea {
+    color: white;
 }
 
 .theme-toggle {
@@ -613,18 +619,6 @@ body.dark-mode .infos p {
         font-size: 20px;
         text-align: center;
         margin-bottom: 20px;
-    }
-
-    .contactForm input,
-    .contactForm textarea {
-        width: 80%;
-        padding: 10px;
-        font-size: 14px;
-        background: transparent;
-        border: none;
-        border-bottom: 2px solid #444;
-        color: white;
-        box-sizing: border-box;
     }
 
     .contactForm button,
