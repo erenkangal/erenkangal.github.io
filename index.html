@@ -3,7 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Eren Kangal Portfolio</title>
+  <title>Eren Kangal - Software Test Engineer & Backend Developer</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Eren Kangal - Computer Engineering graduate from TED University, experienced Backend Developer at Türk Telekom, and current Software Test Engineer at Innova Bilişim. Specialized in Java, SQL, testing frameworks, and web development." />
+  <meta name="keywords" content="Eren Kangal, Software Engineer, Test Engineer, Backend Developer, Java, SQL, Selenium, Vue.js, Turkey" />
+  <meta name="author" content="Eren Kangal" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Eren Kangal - Software Test Engineer & Backend Developer" />
+  <meta property="og:description" content="Experienced software engineer with expertise in backend development, testing, and web technologies. Based in Turkey." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://erenkangal.github.io" />
+  <meta property="og:image" content="https://erenkangal.github.io/images/ImageOfMe.jpg" />
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Eren Kangal - Software Test Engineer & Backend Developer" />
+  <meta name="twitter:description" content="Experienced software engineer with expertise in backend development, testing, and web technologies." />
+  <meta name="twitter:image" content="https://erenkangal.github.io/images/ImageOfMe.jpg" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="images/logo.png" />
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/vue@3" defer></script>
   <script src="app.js" defer></script>
@@ -74,6 +95,67 @@
     </div>
   </section>
 
+  <section class="projects" id="projects">
+    <h3>Projects</h3>
+    
+    <!-- Project Filters -->
+    <div class="projectFilters animate-on-scroll">
+      <div class="searchBox">
+        <input 
+          v-model="projectFilters.search" 
+          @input="filterProjects"
+          type="text" 
+          placeholder="Search projects..." 
+          class="searchInput"
+        />
+      </div>
+      <div class="filterButtons">
+        <select v-model="projectFilters.technology" @change="filterProjects" class="filterSelect">
+          <option value="all">All Technologies</option>
+          <option v-for="tech in availableTechnologies" :key="tech" :value="tech">{{ tech }}</option>
+        </select>
+        <button @click="clearFilters" class="clearFilters">Clear Filters</button>
+      </div>
+    </div>
+    
+    <div class="projectGrid animate-on-scroll">
+      <div class="projectCard" v-for="project in filteredProjects" :key="project.id">
+        <div class="projectImage">
+          <img :src="project.image" :alt="project.title" />
+        </div>
+        <div class="projectContent">
+          <h4>{{ project.title }}</h4>
+          <p>{{ project.description }}</p>
+          <div class="projectTech">
+            <span v-for="tech in project.technologies" :key="tech" class="techTag">{{ tech }}</span>
+          </div>
+          <div class="projectLinks">
+            <a v-if="project.github" :href="project.github" target="_blank" class="projectLink">
+              <img src="images/github.png" alt="GitHub" />
+              {{ project.githubName || 'View Code' }}
+            </a>
+            <a v-if="project.github2" :href="project.github2" target="_blank" class="projectLink">
+              <img src="images/github.png" alt="GitHub" />
+              {{ project.github2Name || 'UDP Socket' }}
+            </a>
+            <a v-if="project.github3" :href="project.github3" target="_blank" class="projectLink">
+              <img src="images/github.png" alt="GitHub" />
+              {{ project.github3Name || 'Erosion' }}
+            </a>
+            <a v-if="project.github4" :href="project.github4" target="_blank" class="projectLink">
+              <img src="images/github.png" alt="GitHub" />
+              {{ project.github4Name || 'PSNR Matlab' }}
+            </a>
+            <a v-if="project.live" :href="project.live" target="_blank" class="projectLink">
+              <img src="images/webLogo.gif" alt="Live Demo" />
+              Live Demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="contact" id="contact">
     <h1>Contact</h1>
 
@@ -94,15 +176,43 @@
 
     <div class="contactForm">
       <h2>Mail Me</h2>
-      <form
-              action="https://formspree.io/f/mldbrrwb"
-              method="POST"
-              class="contact-form"
-      >
-        <input type="text" name="name" placeholder="Name" required />
-        <input type="email" name="email" placeholder="Email" required />
-        <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
-        <button type="submit">Send</button>
+      
+      <!-- Success Message -->
+      <div v-if="formStatus.submitted" class="form-success">
+        <p>✅ Thank you for your message! I'll get back to you soon.</p>
+      </div>
+      
+      <!-- Error Message -->
+      <div v-if="formStatus.error" class="form-error">
+        <p>❌ {{ formStatus.error }}</p>
+      </div>
+      
+      <form @submit="submitForm" class="contact-form">
+        <input 
+          v-model="form.name" 
+          type="text" 
+          name="name" 
+          placeholder="Name" 
+          required 
+        />
+        <input 
+          v-model="form.email" 
+          type="email" 
+          name="email" 
+          placeholder="Email" 
+          required 
+        />
+        <textarea 
+          v-model="form.message" 
+          name="message" 
+          rows="5" 
+          placeholder="Your Message..." 
+          required
+        ></textarea>
+        <button type="submit" :disabled="formStatus.loading">
+          <span v-if="formStatus.loading">Sending...</span>
+          <span v-else>Send</span>
+        </button>
       </form>
 
     </div>
