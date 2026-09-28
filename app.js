@@ -3,8 +3,16 @@ const app = Vue.createApp({
     return {
       menuOpen: false,
       cvDownloads: [
-        { language: "tr", label: "Türkçe CV", path: "assets/GökalpErenKangalCV_Turkce.pdf", available: false, checking: true },
-        { language: "en", label: "English CV/Resume", path: "assets/GökalpErenKangalResumeCV_en.pdf", available: false, checking: true }
+        {
+          language: "tr",
+          label: "Türkçe CV",
+          path: "assets/GökalpErenKangalCV_Turkce.pdf"
+        },
+        {
+          language: "en",
+          label: "English CV/Resume",
+          path: "assets/GökalpErenKangalResumeCV_en.pdf"
+        }
       ],
       navItems: [
         { text: "Home", href: "#home" },
@@ -67,42 +75,90 @@ const app = Vue.createApp({
         {
           id: 1,
           title: "Portfolio Website",
-          description: "A responsive personal portfolio website built with Vue.js, featuring dark mode, smooth animations, and contact form integration.",
+          description:
+              "A responsive personal portfolio website built with Vue.js, featuring dark mode, smooth animations, and bilingual CV downloads.",
           technologies: ["Vue.js", "HTML", "CSS", "JavaScript"],
           image: "images/webLogo.gif",
-          github: "https://github.com/erenkangal/erenkangal.github.io",
-          live: "https://erenkangal.github.io",
-          featured: true,
-          difficulty: "Intermediate",
-          completionDate: "2024"
+          links: [
+            {
+              label: "View Code",
+              url: "https://github.com/erenkangal/erenkangal.github.io",
+              icon: "images/github.png"
+            },
+            {
+              label: "Live Demo",
+              url: "https://erenkangal.github.io",
+              icon: "images/webLogo.gif"
+            }
+          ]
         },
         {
           id: 2,
           title: "Python Projects",
-          description: "Collection of Python applications including data structures, algorithms, and network programming implementations.",
-          technologies: ["Python", "TCP/UDP", "Data Structures", "Algorithms", "Image Processing"],
+          description:
+              "Collection of Python applications including data structures, algorithms, and network programming implementations.",
+          technologies: [
+            "Python",
+            "TCP/UDP",
+            "Data Structures",
+            "Algorithms",
+            "Image Processing"
+          ],
           image: "images/logo.png",
-          github: "https://github.com/erenkangal/TCPsocketProgrammnig",
-          githubName: "TCP Socket",
-          github2: "https://github.com/erenkangal/UDPsocketProgramming",
-          github2Name: "UDP Socket",
-          github3: "https://github.com/erenkangal/erosion",
-          github3Name: "Erosion",
-          github4: "https://github.com/erenkangal/psnrMatlab",
-          github4Name: "PSNR Matlab",
+          links: [
+            {
+              label: "TCP Socket",
+              url: "https://github.com/erenkangal/TCPsocketProgrammnig",
+              icon: "images/github.png"
+            },
+            {
+              label: "UDP Socket",
+              url: "https://github.com/erenkangal/UDPsocketProgramming",
+              icon: "images/github.png"
+            },
+            {
+              label: "Erosion",
+              url: "https://github.com/erenkangal/erosion",
+              icon: "images/github.png"
+            },
+            {
+              label: "PSNR Matlab",
+              url: "https://github.com/erenkangal/psnrMatlab",
+              icon: "images/github.png"
+            }
+          ]
         },
         {
           id: 4,
           title: "Test Automation Projects",
-          description: " Test Automation Projects with JUnit, TestNG, Selenium, Playwright, CodeceptJS",
-          technologies: ["Java", "JUnit", "TestNG", "Selenium", "Playwright", "CodeceptJS"],
+          description:
+              "Test automation projects with JUnit, TestNG, Selenium, Playwright, and CodeceptJS.",
+          technologies: [
+            "Java",
+            "JUnit",
+            "TestNG",
+            "Selenium",
+            "Playwright",
+            "CodeceptJS"
+          ],
           image: "images/logo.png",
-          github: "https://github.com/erenkangal/BookingTestWithSelenium",
-          githubName: "Booking Test w/Selenium",
-          github2: "https://github.com/erenkangal/BookingTestWithCodeceptJS",
-          github2Name: "Booking Test w/CodeceptJS",
-          github3: "https://github.com/erenkangal/integrationTesting",
-          github3Name: "Complete Project Testing with Java",
+          links: [
+            {
+              label: "Booking Test w/Selenium",
+              url: "https://github.com/erenkangal/BookingTestWithSelenium",
+              icon: "images/github.png"
+            },
+            {
+              label: "Booking Test w/CodeceptJS",
+              url: "https://github.com/erenkangal/BookingTestWithCodeceptJS",
+              icon: "images/github.png"
+            },
+            {
+              label: "Complete Project Testing with Java",
+              url: "https://github.com/erenkangal/integrationTesting",
+              icon: "images/github.png"
+            }
+          ]
         }
       ],
 
@@ -136,14 +192,7 @@ const app = Vue.createApp({
       projectFilters: {
         search: "",
         technology: "all",
-        difficulty: "all"
       },
-      
-      // ANIMATION STATES
-      animations: {
-        typing: false,
-        particles: false
-      }
     };
   },
 
@@ -154,10 +203,8 @@ const app = Vue.createApp({
                              project.description.toLowerCase().includes(this.projectFilters.search.toLowerCase());
         const matchesTechnology = this.projectFilters.technology === "all" || 
                                  project.technologies.includes(this.projectFilters.technology);
-        const matchesDifficulty = this.projectFilters.difficulty === "all" || 
-                                 project.difficulty === this.projectFilters.difficulty;
-        
-        return matchesSearch && matchesTechnology && matchesDifficulty;
+
+        return matchesSearch && matchesTechnology;
       });
     },
     
@@ -168,19 +215,6 @@ const app = Vue.createApp({
   },
 
   methods: {
-    async checkCvDownloads() {
-      await Promise.all(this.cvDownloads.map(async (cv) => {
-        try {
-          const response = await fetch(cv.path, { method: "HEAD", cache: "no-cache" });
-          cv.available = response.ok &&
-            (response.headers.get("content-type") || "").toLowerCase().includes("application/pdf");
-        } catch {
-          cv.available = false;
-        } finally {
-          cv.checking = false;
-        }
-      }));
-    },
     async submitForm(event) {
       event.preventDefault();
       
@@ -232,46 +266,10 @@ const app = Vue.createApp({
     clearFilters() {
       this.projectFilters.search = "";
       this.projectFilters.technology = "all";
-      this.projectFilters.difficulty = "all";
     },
-    
-    // ANIMATION METHODS
-    startTypingAnimation() {
-      this.animations.typing = true;
-      setTimeout(() => {
-        this.animations.typing = false;
-      }, 3000);
-    },
-    
-    // UTILITY METHODS
-    copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        // Show success message
-        this.showNotification('Copied to clipboard!', 'success');
-      });
-    },
-    
-    showNotification(message, type = 'info') {
-      const notification = document.createElement('div');
-      notification.className = `notification notification-${type}`;
-      notification.textContent = message;
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        notification.classList.add('show');
-      }, 100);
-      
-      setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-          document.body.removeChild(notification);
-        }, 300);
-      }, 3000);
-    }
   },
 
   mounted() {
-    this.checkCvDownloads();
     const savedTheme = localStorage.getItem("darkMode");
     if (savedTheme === "true") {
       this.isDarkMode = true;

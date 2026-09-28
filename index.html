@@ -85,23 +85,34 @@
           <span v-for="item in aboutMe.focus" :key="item">{{ item }}</span>
         </div>
         <div class="cv-downloads" role="group" aria-label="Download my CV">
-          <div v-for="cv in cvDownloads" :key="cv.language" class="cv-download">
-            <a v-if="cv.available" :href="cv.path" :download="cv.path.split('/').pop()"
-               class="cv-button" :lang="cv.language"
-               :aria-label="cv.language === 'tr' ? 'Türkçe CV indir (PDF)' : 'Download English CV (PDF)'">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>{{ cv.label }}</span><span class="cv-format">PDF</span>
-            </a>
-            <button v-else type="button" class="cv-button" disabled :lang="cv.language">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>{{ cv.label }}</span><span class="cv-format">PDF</span>
-            </button>
+          <a
+                  v-for="cv in cvDownloads"
+                  :key="cv.language"
+                  :href="cv.path"
+                  :download="cv.path.split('/').pop()"
+                  :lang="cv.language"
+                  class="cv-button"
+                  :aria-label="cv.language === 'tr'
+      ? 'Türkçe CV indir (PDF)'
+      : 'Download English CV (PDF)'"
+          >
+            <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    aria-hidden="true"
+            >
+              <path
+                      d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+              />
+            </svg>
 
-          </div>
+            <span>{{ cv.label }}</span>
+            <span class="cv-format">PDF</span>
+          </a>
         </div>
       </div>
     </div>
@@ -154,25 +165,16 @@
             <span v-for="tech in project.technologies" :key="tech" class="techTag">{{ tech }}</span>
           </div>
           <div class="projectLinks">
-            <a v-if="project.github" :href="project.github" target="_blank" class="projectLink">
-              <img src="images/github.png" alt="GitHub" />
-              {{ project.githubName || 'View Code' }}
-            </a>
-            <a v-if="project.github2" :href="project.github2" target="_blank" class="projectLink">
-              <img src="images/github.png" alt="GitHub" />
-              {{ project.github2Name || 'UDP Socket' }}
-            </a>
-            <a v-if="project.github3" :href="project.github3" target="_blank" class="projectLink">
-              <img src="images/github.png" alt="GitHub" />
-              {{ project.github3Name || 'Erosion' }}
-            </a>
-            <a v-if="project.github4" :href="project.github4" target="_blank" class="projectLink">
-              <img src="images/github.png" alt="GitHub" />
-              {{ project.github4Name || 'PSNR Matlab' }}
-            </a>
-            <a v-if="project.live" :href="project.live" target="_blank" class="projectLink">
-              <img src="images/webLogo.gif" alt="Live Demo" />
-              Live Demo
+            <a
+                    v-for="link in project.links"
+                    :key="link.url"
+                    :href="link.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="projectLink"
+            >
+              <img :src="link.icon" alt="" aria-hidden="true" />
+              {{ link.label }}
             </a>
           </div>
         </div>
