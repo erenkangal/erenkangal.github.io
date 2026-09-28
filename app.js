@@ -27,7 +27,7 @@ const app = Vue.createApp({
         intro: "I'm Eren, a Computer Engineering graduate from TED University in 2024. I build reliable software by combining development experience with a practical approach to testing.",
         current: "At Innova Bilişim, I work on web, mobile, and API testing and develop test automation with Java and Selenium. I also use SOAP UI, Java, Groovy, Jenkins, and SQL since November 2024.",
         background: "Before that, I worked on backend development at Türk Telekom as a Long-Term Intern, where I gained hands-on experience with Java and SQL.",
-        focus: ["Test Automation", "API Testing", "Java", "CI/CD"]      },
+        focus: ["Test Automation", "Java", "API Testing", "CI/CD", "SQL"]      },
 
       // SKILLS
       skills: [
@@ -217,26 +217,42 @@ const app = Vue.createApp({
   methods: {
     async submitForm(event) {
       event.preventDefault();
-      
+
+      if (this.formStatus.loading) return;
+
       this.formStatus.loading = true;
       this.formStatus.error = null;
-      
+      this.formStatus.submitted = false;
+
       try {
-        // Simulate form submission (replace with actual form handling)
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
+        const response = await fetch(
+            "https://formspree.io/f/xkjgkwpn",
+            {
+              method: "POST",
+              headers: {
+                Accept: "application/json"
+              },
+              body: new FormData(event.target)
+            }
+        );
+
+        if (!response.ok) {
+          const result = await response.json().catch(() => ({}));
+
+          throw new Error(
+              result.errors?.map(error => error.message).join(", ") ||
+              "Failed to send message. Please try again."
+          );
+        }
+
         this.formStatus.submitted = true;
         this.form.name = "";
         this.form.email = "";
         this.form.message = "";
-        
-        // Reset success message after 5 seconds
-        setTimeout(() => {
-          this.formStatus.submitted = false;
-        }, 5000);
-        
+
       } catch (error) {
-        this.formStatus.error = "Failed to send message. Please try again.";
+        this.formStatus.error =
+            error.message || "Could not connect. Please try again.";
       } finally {
         this.formStatus.loading = false;
       }
