@@ -2,6 +2,10 @@ const app = Vue.createApp({
   data() {
     return {
       menuOpen: false,
+      cvDownloads: [
+        { language: "tr", label: "Türkçe CV", path: "assets/Eren-Kangal-CV-TR.pdf", available: false, checking: true },
+        { language: "en", label: "English CV", path: "assets/Eren-Kangal-CV-EN.pdf", available: false, checking: true }
+      ],
       navItems: [
         { text: "Home", href: "#home" },
         { text: "About Me", href: "#aboutMe" },
@@ -164,6 +168,19 @@ const app = Vue.createApp({
   },
 
   methods: {
+    async checkCvDownloads() {
+      await Promise.all(this.cvDownloads.map(async (cv) => {
+        try {
+          const response = await fetch(cv.path, { method: "HEAD", cache: "no-cache" });
+          cv.available = response.ok &&
+            (response.headers.get("content-type") || "").toLowerCase().includes("application/pdf");
+        } catch {
+          cv.available = false;
+        } finally {
+          cv.checking = false;
+        }
+      }));
+    },
     async submitForm(event) {
       event.preventDefault();
       
@@ -254,6 +271,7 @@ const app = Vue.createApp({
   },
 
   mounted() {
+    this.checkCvDownloads();
     const savedTheme = localStorage.getItem("darkMode");
     if (savedTheme === "true") {
       this.isDarkMode = true;
