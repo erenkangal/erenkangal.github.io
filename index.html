@@ -78,8 +78,6 @@
         <span>Software Development Engineer in Test</span>
       </div>
       <div class="about-content">
-        <p class="about-eyebrow">ENGINEERING · QUALITY · CURIOSITY</p>
-        <h3>Building confidence in software, one test at a time.</h3>
         <p>{{ aboutMe.intro }}</p>
         <p>{{ aboutMe.current }}</p>
         <p>{{ aboutMe.background }}</p>
@@ -102,10 +100,7 @@
               </svg>
               <span>{{ cv.label }}</span><span class="cv-format">PDF</span>
             </button>
-            <small v-if="!cv.available" class="cv-status" :lang="cv.language" role="status">
-              {{ cv.checking ? (cv.language === 'tr' ? 'Kontrol ediliyor…' : 'Checking…') :
-                 (cv.language === 'tr' ? 'Yakında' : 'Coming soon') }}
-            </small>
+
           </div>
         </div>
       </div>
