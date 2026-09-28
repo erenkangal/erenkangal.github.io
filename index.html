@@ -78,13 +78,30 @@
         <span>Software Development Engineer in Test</span>
       </div>
       <div class="about-content">
-        <p class="about-eyebrow">ENGINEERING · QUALITY · CURIOSITY</p>
-        <h3>Building confidence in software, one test at a time.</h3>
         <p>{{ aboutMe.intro }}</p>
         <p>{{ aboutMe.current }}</p>
         <p>{{ aboutMe.background }}</p>
         <div class="about-focus" aria-label="Areas of focus">
           <span v-for="item in aboutMe.focus" :key="item">{{ item }}</span>
+        </div>
+        <div class="cv-downloads" role="group" aria-label="Download my CV">
+          <div v-for="cv in cvDownloads" :key="cv.language" class="cv-download">
+            <a v-if="cv.available" :href="cv.path" :download="cv.path.split('/').pop()"
+               class="cv-button" :lang="cv.language"
+               :aria-label="cv.language === 'tr' ? 'Türkçe CV indir (PDF)' : 'Download English CV (PDF)'">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{ cv.label }}</span><span class="cv-format">PDF</span>
+            </a>
+            <button v-else type="button" class="cv-button" disabled :lang="cv.language">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{ cv.label }}</span><span class="cv-format">PDF</span>
+            </button>
+
+          </div>
         </div>
       </div>
     </div>

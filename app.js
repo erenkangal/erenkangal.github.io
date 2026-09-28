@@ -2,6 +2,10 @@ const app = Vue.createApp({
   data() {
     return {
       menuOpen: false,
+      cvDownloads: [
+        { language: "tr", label: "Türkçe CV", path: "assets/GökalpErenKangalCV_Turkce.pdf", available: false, checking: true },
+        { language: "en", label: "English CV/Resume", path: "assets/GökalpErenKangalResumeCV_en.pdf", available: false, checking: true }
+      ],
       navItems: [
         { text: "Home", href: "#home" },
         { text: "About Me", href: "#aboutMe" },
@@ -15,8 +19,7 @@ const app = Vue.createApp({
         intro: "I'm Eren, a Computer Engineering graduate from TED University in 2024. I build reliable software by combining development experience with a practical approach to testing.",
         current: "At Innova Bilişim, I work on web, mobile, and API testing and develop test automation with Java and Selenium. I also use SOAP UI, Java, Groovy, Jenkins, and SQL since November 2024.",
         background: "Before that, I worked on backend development at Türk Telekom as a Long-Term Intern, where I gained hands-on experience with Java and SQL.",
-        focus: ["Test Automation", "API Testing", "Java", "CI/CD"]
-      },
+        focus: ["Test Automation", "API Testing", "Java", "CI/CD"]      },
 
       // SKILLS
       skills: [
@@ -165,6 +168,19 @@ const app = Vue.createApp({
   },
 
   methods: {
+    async checkCvDownloads() {
+      await Promise.all(this.cvDownloads.map(async (cv) => {
+        try {
+          const response = await fetch(cv.path, { method: "HEAD", cache: "no-cache" });
+          cv.available = response.ok &&
+            (response.headers.get("content-type") || "").toLowerCase().includes("application/pdf");
+        } catch {
+          cv.available = false;
+        } finally {
+          cv.checking = false;
+        }
+      }));
+    },
     async submitForm(event) {
       event.preventDefault();
       
@@ -203,6 +219,7 @@ const app = Vue.createApp({
     
     // PROJECT INTERACTIONS
     filterProjects() {
+      // Trigger re-render of filtered projects
       this.$nextTick(() => {
         const projectCards = document.querySelectorAll('.projectCard');
         projectCards.forEach((card, index) => {
@@ -229,6 +246,7 @@ const app = Vue.createApp({
     // UTILITY METHODS
     copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
+        // Show success message
         this.showNotification('Copied to clipboard!', 'success');
       });
     },
@@ -253,6 +271,7 @@ const app = Vue.createApp({
   },
 
   mounted() {
+    this.checkCvDownloads();
     const savedTheme = localStorage.getItem("darkMode");
     if (savedTheme === "true") {
       this.isDarkMode = true;
