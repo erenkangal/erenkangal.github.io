@@ -1299,3 +1299,55 @@ body.dark-mode .about-focus span {
     .about-content h3 { font-size: 29px; }
     .about-content p { font-size: 16px; }
 }
+
+
+/* Bilingual CV downloads */
+.cv-downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+}
+.cv-download { min-width: 0; }
+.cv-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 52px;
+    padding: 14px 20px;
+    border: 1px solid #2674a7;
+    border-radius: 14px;
+    background: #2674a7;
+    color: #fff;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.cv-button svg { width: 21px; height: 21px; flex-shrink: 0; }
+.cv-format { font-size: 10px; letter-spacing: 0.08em; opacity: 0.8; }
+.cv-button:hover {
+    background: #1e5c85;
+    color: #fff;
+    transform: none;
+    box-shadow: 0 5px 16px rgba(38, 116, 167, 0.2);
+}
+.cv-button:focus-visible { outline: 3px solid #e67e22; outline-offset: 4px; }
+.cv-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.cv-status { display: block; margin-top: 7px; font-size: 12px; text-align: center; }
+body.dark-mode .cv-button { background: #225e87; border-color: #80bde5; color: #fff; }
+body.dark-mode .cv-button:hover { background: #194b6d; }
+@media (max-width: 600px) {
+    .cv-downloads { flex-direction: column; }
+    .cv-button { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .cv-button { transition: none; }
+}
