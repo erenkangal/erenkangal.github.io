@@ -72,14 +72,21 @@
 
   <section class="aboutMe" id="aboutMe">
     <h2>About Me</h2>
-    <div class="infos animate-on-scroll">
-      <p>{{ aboutMe.intro }}</p>
-      <img src="images/ImageOfMe.jpg" class="picture" alt="profile" />
-      <p>
-        <span>My vision:</span> {{ aboutMe.vision }}
-        <br /><br />
-        <span>My mission:</span> {{ aboutMe.mission }}
-      </p>
+    <div class="about-layout animate-on-scroll">
+      <div class="about-photo">
+        <img src="images/ImageOfMe.jpg" alt="Portrait of Eren Kangal" />
+        <span>Software Development Engineer in Test</span>
+      </div>
+      <div class="about-content">
+        <p class="about-eyebrow">ENGINEERING · QUALITY · CURIOSITY</p>
+        <h3>Building confidence in software, one test at a time.</h3>
+        <p>{{ aboutMe.intro }}</p>
+        <p>{{ aboutMe.current }}</p>
+        <p>{{ aboutMe.background }}</p>
+        <div class="about-focus" aria-label="Areas of focus">
+          <span v-for="item in aboutMe.focus" :key="item">{{ item }}</span>
+        </div>
+      </div>
     </div>
   </section>
 
