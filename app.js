@@ -12,9 +12,10 @@ const app = Vue.createApp({
 
       // ABOUT ME
       aboutMe: {
-        intro: "Graduated in Computer Engineering from TED University in 2024. Completed a one-year experience as a Back-End Developer at Türk Telekom. Currently working as a Software Test Engineer at Innova Bilişim.",
-        vision: "To become a trusted software engineer who creates scalable and impactful solutions that make technology feel effortless.",
-        mission: "To grow every day as a developer by solving real problems with clean code, curiosity, and a passion for learning."
+        intro: "I'm Eren, a Computer Engineering graduate from TED University in 2024. I build reliable software by combining development experience with a practical approach to testing.",
+        current: "At Innova Bilişim, I work on web, mobile, and API testing and develop test automation with Java and Selenium. I also use SOAP UI, Java, Groovy, Jenkins, and SQL since November 2024.",
+        background: "Before that, I worked on backend development at Türk Telekom as a Long-Term Intern, where I gained hands-on experience with Java and SQL.",
+        focus: ["Test Automation", "API Testing", "Java", "CI/CD"]
       },
 
       // SKILLS
@@ -202,7 +203,6 @@ const app = Vue.createApp({
     
     // PROJECT INTERACTIONS
     filterProjects() {
-      // Trigger re-render of filtered projects
       this.$nextTick(() => {
         const projectCards = document.querySelectorAll('.projectCard');
         projectCards.forEach((card, index) => {
@@ -229,7 +229,6 @@ const app = Vue.createApp({
     // UTILITY METHODS
     copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
-        // Show success message
         this.showNotification('Copied to clipboard!', 'success');
       });
     },
